@@ -30,6 +30,10 @@
 
 */
 
+next(A, B, List) :- append(_, [A, B|_], List).
+next(A, B, List) :- append(_, [B, A|_], List).
+adjacent(A, B, List) :- next(A, B, List); next (B, A, List).
+
 hall(Rooms) :-
     length(Rooms, 5),
     
