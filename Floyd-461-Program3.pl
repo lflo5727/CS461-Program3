@@ -30,10 +30,12 @@
 
 */
 
+
 next(A, B, List) :- append(_, [A, B|_], List).
 next(A, B, List) :- append(_, [B, A|_], List).
-adjacent(A, B, List) :- next(A, B, List); next (B, A, List).
+adjacent(A, B, List) :- next(A, B, List); next(B, A, List).
 
+%Use hall(Rooms) to list out each room with each item
 hall(Rooms) :-
     length(Rooms, 5),
     
@@ -67,7 +69,16 @@ hall(Rooms) :-
     
     not(Rooms = [room(english, _, _, _, _), _, _, _, _]),
     not(Rooms = [_, room(english, _, _, _, _), _, _, _]).
-    
+  
+%Find CS Major's music genre  
+compsci_music(Music) :-
+	hall(Rooms),
+	member(room(compsci, _, _, Music, _), Rooms).
+
+%Find English Major's favorite drink
+english_drink(Drink) :-
+	hall(Rooms),
+	member(room(english, _, _, _, Drink), Rooms).
     
     
     
